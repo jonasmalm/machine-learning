@@ -4,10 +4,11 @@ library(ggplot2)
 ############ Sampling data
 
 # Sample [0, 10], n = 500
+set.seed(12345)
 x = runif(500, 0, 10)
-mydata = data.frame(x, sin = sin(x))
-train = mydata[1:25,] 
-test = mydata[26:500,] 
+data = data.frame(x, sin = sin(x))
+train = data[1:25,] 
+test = data[26:500,] 
 
 # Decide on the depth of NN
 layers = c(5)
@@ -21,13 +22,17 @@ initial_weights = runif(no_weights, -1, 1)
 # Regression --> TRUE, classification --> FALSE
 # threshold: stopping criteria, partial derivative
 
-nn = neuralnet(sin ~ x, data = data, hidden = layers, startweights = initial_weights)
-pred = data.frame(x = test$x, sin = predict(nn, test))
+nn = neuralnet(sin ~ x, data = train, hidden = layers, startweights = initial_weights)
+
+
+plot_data = data.frame(x = test$x, sin = test$sin, type = 'Test')
+plot_data = rbind(plot_data, data.frame(x = test$x, sin = predict(nn, test), type = 'Predictions'))
+plot_data = rbind(plot_data, data.frame(x = train$x, sin = train$sin, type = 'Training'))
+
 
 ggplot() + 
-  geom_point(data = train, aes(x = x, y = sin), color = 'black', size = 2) +
-  geom_point(data = test, aes(x = x, y = sin), color = 'blue', size = 1) + 
-  geom_point(data = pred, aes(x = x, y = sin), color = 'red', size = 1)
+  geom_point(data = plot_data, aes(x = x, y = sin, color = type))
+  
 
 ###################### Predictions outside trained interval ######################
 # The neural net cannot make accurate predictions in the interval [10, 20]
