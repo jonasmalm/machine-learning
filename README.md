@@ -1,13 +1,13 @@
 # machine-learning
-During the course [TDDE01: Machine Learning](https://liu.se/studieinfo/en/kurs/tdde01/ht-2020), I learned the basics of machine learning in the fall off 2020. In this repo, I included some R-code I wrote during the course.
+During the course [TDDE01: Machine Learning](https://liu.se/studieinfo/en/kurs/tdde01/ht-2020), I learned the basics of machine learning in the fall of 2020. In this repo, I included some R-code I wrote during the course.
 
 # neuralnet.R: Neural Network Regression
 ![Neuralnet](images/nn.png)
 
-In this file I create a neural network with a single hidden layer with five neurons that predicts sin(x) from x. There is also some code to manually calculate the output of each layer using the sigmoid activation function. The network does not perform that well due to the small size of the training data: only 25 points.
+I created a neural network with a single hidden layer with five neurons that predicts sin(x) from x. There is also some code to manually calculate the output of each layer using the sigmoid activation function. The network does not perform that well due to the small size of the training data: only 25 points.
 
 # kernels.R: Kernel Regression
-![Kernels](images/kernels.png)
+![Kernels](images/kernel.png)
 
 Here I try to predict sin(x) from x using Gaussian kernel regression built from scratch. The plot above visualized how changing the h-value (making closer 'votes' more important) affects the quality of the predictions. Due to the nature of kernel regression, this code scales extremely poorly. Creating the plot above requires n^2 * h iterations, where n is the number of observations in the data and h is the number of h-values evaluated.  
 
