@@ -1,5 +1,5 @@
 # machine-learning
-During the course [TDDE01: Machine Learning](https://liu.se/studieinfo/en/kurs/tdde01/ht-2020), I learned the basics of machine learning in the fall of 2020. In this repo, I included some R-code I wrote during the course.
+During the course [TDDE01: Machine Learning](https://liu.se/studieinfo/en/kurs/tdde01/ht-2020), I learned the basics of machine learning in the fall of 2020. In this repo, I wrote some R-code to illustrate a bit of what I learned in the course.
 
 # neuralnet.R: Neural Network Regression
 ![Neuralnet](images/nn.png)
@@ -9,7 +9,9 @@ I created a neural network with a single hidden layer with five neurons that pre
 # kernels.R: Kernel Regression
 ![Kernels](images/kernel.png)
 
-Here I try to predict sin(x) from x using Gaussian kernel regression built from scratch. The plot above visualized how changing the h-value (making closer 'votes' more important) affects the quality of the predictions. Due to the nature of kernel regression, this code scales extremely poorly. Creating the plot above requires n^2 * h iterations, where n is the number of observations in the data and h is the number of h-values evaluated.  
+Here I try to predict sin(x) from x using Gaussian kernel regression built from scratch. The plot above visualizes how changing the bandwidth h (making closer 'votes' more important) affects the quality of the predictions. The red dots represent the observations and the lines are the predictions of sin(x) given an x-value for different bandwidths h.
+
+Due to the nature of kernel regression, this code scales extremely poorly. Creating the plot above requires n^2 * h iterations, where n is the number of observations in the data and h is the number of h-values evaluated.  
 
 # boot.R: Parametric Bootstrap
 ![Bootstrap](images/boot.png)
@@ -26,6 +28,10 @@ In this file I classify the spam data set using support vector machines with a g
 
 Here I do Principle Component Analysis on the iris data set, using features Sepal.Width and Sepal.Length to create two new coordinate axis. First implemented from scratch, and then plotted in the new coordinate system using the princomp package.
 
+# knn.R: K-Nearest Neighbor Classification
+![KNN](images/knn.png)
+
+Here I first separate the iris data set into training and testing. Then, for three different kernels and K between 1 and 30 I try to predict the test data using the training data. As expected the rectangular kernel does not perform so well.
 
 # tree.R: Decision Tree
 ![Tree size](images/tree_size.png)
